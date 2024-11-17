@@ -1,0 +1,19 @@
+from flask import Flask
+import random
+app = Flask(__name__)
+random_fact = ['По размеру и массе, Земля – пятая по величине планета (после Юпитера, Сатурна, Урана и Нептуна).',
+               'Лучи света преодолевают путь от Солнца к Земле за 500 секунд.',
+               'Возраст Земли — 4,54 млрд лет.',
+               'Земля получает очень большое количество световой энергии (1,7-1017 Дж/с) от Солнца, но только 50% ее достигает поверхности Земли.']
+monet_flip = ['ОРЕЛ', 'РЕШКА']
+@app.route("/")
+def print():
+    return '<h1>Привет! Здесь ты можешь узнать много фактов о планете Земля!</h1><a href="/random_fact">Посмотреть случайный факт!</a><p></p><a href="/monet">Кинуть монетку</a>'
+    
+@app.route("/random_fact")
+def random_fact_def():
+    return f'<p>{random.choice(random_fact)}</p>'
+@app.route("/monet")
+def monet_flip_def():
+    return f'<p>{random.choice(monet_flip)}</p>'
+app.run(debug=True)
